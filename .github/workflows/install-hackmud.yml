@@ -29,13 +29,12 @@ jobs:
           STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
           STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
         run: | 
-          set +e
           curl -qL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip" --output steamcmd.zip
           tar zxvf steamcmd.zip
           cd $env:GITHUB_WORKSPACE
           dir
           echo ::group::"SteamCMD Initalization Output"
-          ./steamcmd.exe +quit
+          ./steamcmd.exe +quit || true
           echo ::endgroup::
       
       - name: Install Hackmud
