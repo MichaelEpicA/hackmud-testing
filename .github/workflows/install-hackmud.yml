@@ -34,7 +34,7 @@ jobs:
           ./steamcmd.sh +quit
           echo ::endgroup::
       - name: Download xdotool
-        run: curl -sqL "https://github.com/jordansissel/xdotool/releases/download/v4.20251130.1/xdotool-4.20251130.1.tar.gz" | tar zxvf -
+        run: sudo apt install xdotool
       - name: Install Hackmud
         run: |
           echo "::warning::Installing Hackmud, this may take a while... (NO AUTHENTICATION PROVIDED, WILL FAIL!)"
