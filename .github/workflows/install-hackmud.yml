@@ -45,7 +45,10 @@ jobs:
           ./steamcmd.sh +login MichaelEpicA Steamlover123 +force_install_dir /home/runner/hackmud +app_update 469920 validate +quit
         
       - name: List Hackmud Files
-        run: ls -la /home/runner/hackmud
+        run: |
+          cd /home/runner/hackmud
+          ./hackmud_lin.x86_64
+
         
       - name: Run Hackmud
         run: |
