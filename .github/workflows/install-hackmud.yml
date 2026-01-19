@@ -37,7 +37,7 @@ jobs:
           ./steamcmd.exe +quit || true
           echo ::endgroup::
       - name: Install Steam
-        run: winget install Valve.Steam      
+        run: winget install Valve.Steam --disable-interactivity     
       
       - name: Install Hackmud
         run: |
