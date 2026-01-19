@@ -32,6 +32,7 @@ jobs:
           curl -qL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip" --output steamcmd.zip
           tar zxvf steamcmd.zip
           ls
+          cd $GITHUB_WORKSPACE
           echo ::group::"SteamCMD Initalization Output"
           steamcmd.exe +quit
           echo ::endgroup::
