@@ -31,7 +31,7 @@ jobs:
         run: | 
           curl -qL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip" --output steamcmd.zip
           tar zxvf steamcmd.zip
-          cd %GITHUB_WORKSPACE%
+          cd $env:GITHUB_WORKSPACE
           dir
           echo ::group::"SteamCMD Initalization Output"
           steamcmd.exe +quit
