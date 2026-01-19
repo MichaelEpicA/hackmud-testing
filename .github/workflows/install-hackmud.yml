@@ -58,8 +58,9 @@ jobs:
           dir
       - name: Run Hackmud
         run: |
-          ./steamcmd.exe run_app 469920
-
+          cd "C:\Program Files (x86)\Steam\"
+          ./steam.exe --applaunch 469920
+          
       - name: Run OOG
         run: |
           cd $env:GITHUB_WORKSPACE
