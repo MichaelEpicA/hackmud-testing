@@ -36,6 +36,8 @@ jobs:
           echo ::group::"SteamCMD Initalization Output"
           ./steamcmd.exe +quit || true
           echo ::endgroup::
+      - name: Install Steam
+        run: winget install Valve.Steam      
       
       - name: Install Hackmud
         run: |
@@ -51,6 +53,5 @@ jobs:
       - name: Run OOG
         run: |
           cd $env:GITHUB_WORKSPACE
-          dir
           & './Hackmud OOG.exe'
       
