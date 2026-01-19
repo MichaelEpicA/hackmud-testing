@@ -31,7 +31,7 @@ jobs:
         run: | 
           curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip" | tar zxvf -
           echo ::group::"SteamCMD Initalization Output"
-          ./steamcmd.sh +quit
+          steamcmd.exe +quit
           echo ::endgroup::
       
       - name: Install Hackmud
