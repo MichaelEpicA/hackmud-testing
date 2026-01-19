@@ -60,7 +60,7 @@ jobs:
         run: |
           cd "C:\Program Files (x86)\Steam\"
           ./steam.exe -applaunch 469920
-          timeout 10
+          ping -n 10 -w 1000 localhost > nul
           
       - name: Run OOG
         run: |
