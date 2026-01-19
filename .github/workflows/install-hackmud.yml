@@ -35,15 +35,23 @@ jobs:
           echo ::endgroup::
       - name: Download xdotool
         run: sudo apt install xdotool
+      - name: Install Xvfb
+        run: sudo apt-get install -y xvfb
+      
       - name: Install Hackmud
         run: |
           echo "::warning::Installing Hackmud, this may take a while... (NO AUTHENTICATION PROVIDED, WILL FAIL!)"
           echo "${STEAM_USERNAME} ${STEAM_PASSWORD}"  
           ./steamcmd.sh +login MichaelEpicA Steamlover123 +force_install_dir /home/runner/hackmud +app_update 469920 validate +quit
+        
       - name: List Hackmud Files
         run: ls -la /home/runner/hackmud
+        
       - name: Run Hackmud
-        run: ./steamcmd.sh app_run 469920 +quit
+        run: |
+          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+          export DISPLAY=:99 
+          ./steamcmd.sh app_run 469920 +quit
       - name: Wait until Hackmud is initalized
         run: sleep 15
       - name: Use XDOTool to login to hackmud
