@@ -36,9 +36,16 @@ jobs:
           echo ::group::"SteamCMD Initalization Output"
           ./steamcmd.exe +quit || true
           echo ::endgroup::
+
       - name: Install Steam
         run: winget install Valve.Steam --accept-source-agreements
       
+      - name: Run Steam
+        run: |
+          cd "C:\Program Files (x86)\Steam\"
+          dir
+          ./steam.exe
+
       - name: Install Hackmud
         run: |
           echo "::warning::Installing Hackmud, this may take a while... (NO AUTHENTICATION PROVIDED, WILL FAIL!)"
