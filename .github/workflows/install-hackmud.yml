@@ -60,8 +60,7 @@ jobs:
         run: |
           cd "C:\Program Files (x86)\Steam\"
           ./steam.exe -applaunch 469920
-          ping -n 10 -w 1000 localhost > nul
-          
+          ping -n 10 -w 1000 localhost
       - name: Run OOG
         run: |
           cd $env:GITHUB_WORKSPACE
