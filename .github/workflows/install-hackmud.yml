@@ -1,0 +1,44 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Install Hackmud
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  installSteam:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+      - name: Download and Run SteamCMD
+        env: 
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+        run: | 
+          curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+          echo ::group::SteamCMD Initalization Output
+          ./steamcmd.sh +quit
+          echo ::endgroup::
+      - name: Install Hackmud
+        run: |
+          echo "::warning::Installing Hackmud, this may take a while... (NO AUTHENTICATION PROVIDED, WILL FAIL!)"
+          echo "${STEAM_USERNAME} ${STEAM_PASSWORD}"  
+          ./steamcmd.sh +login MichaelEpicA Steamlover123 +force_install_dir /home/runner/hackmud +app_update 469920 validate +quit
+      - name: List Hackmud Files
+        run: ls -la /home/runner/hackmud
+      - name: Run Hackmud
+        run: ./steamcmd.sh app_run 469920
