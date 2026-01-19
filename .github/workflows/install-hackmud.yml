@@ -24,15 +24,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: Download SteamCMD
+      - name: Download and Run SteamCMD
         env: 
           STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
           STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
         run: | 
           curl -qL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip" --output steamcmd.zip
           tar zxvf steamcmd.zip
-      - name: Run SteamCMD
-        run: steamcmd.exe +quit
+          cd %GITHUB_WORKSPACE%
+          dir
+          echo ::group::"SteamCMD Initalization Output"
+          steamcmd.exe +quit
+          echo ::endgroup::
+      
       - name: Install Hackmud
         run: |
           echo "::warning::Installing Hackmud, this may take a while... (NO AUTHENTICATION PROVIDED, WILL FAIL!)"
