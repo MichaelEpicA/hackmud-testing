@@ -41,4 +41,4 @@ jobs:
       - name: List Hackmud Files
         run: ls -la /home/runner/hackmud
       - name: Run Hackmud
-        run: ./steamcmd.sh app_run 469920
+        run: ./steamcmd.sh app_run 469920 +quit
