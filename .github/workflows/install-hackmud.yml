@@ -33,6 +33,8 @@ jobs:
           echo ::group::SteamCMD Initalization Output
           ./steamcmd.sh +quit
           echo ::endgroup::
+      - name: Download xdotool
+        run: curl -sqL "https://github.com/jordansissel/xdotool/releases/download/v4.20251130.1/xdotool-4.20251130.1.tar.gz" | tar zxvf -
       - name: Install Hackmud
         run: |
           echo "::warning::Installing Hackmud, this may take a while... (NO AUTHENTICATION PROVIDED, WILL FAIL!)"
@@ -42,3 +44,17 @@ jobs:
         run: ls -la /home/runner/hackmud
       - name: Run Hackmud
         run: ./steamcmd.sh app_run 469920 +quit
+      - name: Wait until Hackmud is initalized
+        run: sleep 15
+      - name: Use XDOTool to login to hackmud
+        run: |
+          ps
+          xdotool type "user michael"
+      - name: Wait until logged in
+        run: |
+          sleep 5
+          xdotool type "flush"
+      - name: Get Hackmud shell.txt file
+        run: |
+          cd ~/.config/hackmud/michael/
+          cat -f shell.txt
