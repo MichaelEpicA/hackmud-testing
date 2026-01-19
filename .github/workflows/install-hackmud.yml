@@ -56,6 +56,9 @@ jobs:
         run: |
           cd "C:\Users\runner\hackmud"
           dir
+      - name: Run Hackmud
+        run: |
+          ./steamcmd.exe run_app 469920
 
       - name: Run OOG
         run: |
