@@ -30,6 +30,7 @@ jobs:
           STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
         run: | 
           curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip" | tar zxvf -
+          ls
           echo ::group::"SteamCMD Initalization Output"
           steamcmd.exe +quit
           echo ::endgroup::
