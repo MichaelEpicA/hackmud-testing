@@ -34,14 +34,14 @@ jobs:
           cd $env:GITHUB_WORKSPACE
           dir
           echo ::group::"SteamCMD Initalization Output"
-          steamcmd.exe +quit
+          ./steamcmd.exe +quit
           echo ::endgroup::
       
       - name: Install Hackmud
         run: |
           echo "::warning::Installing Hackmud, this may take a while... (NO AUTHENTICATION PROVIDED, WILL FAIL!)"
           echo "${STEAM_USERNAME} ${STEAM_PASSWORD}"  
-          steamcmd.exe +login MichaelEpicA Steamlover123 +force_install_dir "C:\Users\runner\hackmud" +app_update 469920 validate +quit
+          ./steamcmd.exe +login MichaelEpicA Steamlover123 +force_install_dir "C:\Users\runner\hackmud" +app_update 469920 validate +quit
         
       - name: List Hackmud Files
         run: |
